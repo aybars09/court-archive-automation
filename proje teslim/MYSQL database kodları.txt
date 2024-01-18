@@ -1,0 +1,168 @@
+create database arsiv;
+use arsiv;
+
+
+-- 1 GRUP TABLOSU
+-----------------------------------
+create table groupss (
+	id int AUTO_INCREMENT not null,	
+	grupName  varchar(30) UNIQUE not null,
+    primary key(id)
+);
+
+
+
+
+-- 2 PERSONEL  TABLOSU
+----------------------------------
+create table personel (
+	id int AUTO_INCREMENT not null,	
+	tcno varchar(11) unique,
+	adsoyad varchar(30) not null,
+	dtarihi varchar(30),
+	calistigibirim varchar(30),
+    primary key (id)
+);
+
+
+
+-- 3 USER TABLOSU
+----------------------------------
+create table USERS (
+	id int AUTO_INCREMENT not null,		 
+	userName  varchar(50) not null ,					 
+	password  varchar(100),
+	groupsID int not null,
+	aitOldKisiID int unique not null,
+    foreign key (groupsID) references  groupss(id),
+    foreign key (aitOldKisiID) references  personel(id),
+    primary key (id)
+);
+
+
+
+
+
+-- 4 MAHKEME TURU TABLOSU
+----------------------------------
+create table mahkemeturu (
+	id int AUTO_INCREMENT not null primary key,			 
+	mahkemeTuru  varchar(50) not null					 
+);
+
+
+
+
+
+-- 5 MAHKEMELER TABLOSU
+----------------------------------
+create table mahkemeler (
+	id int AUTO_INCREMENT not null,			 
+	adi  varchar(50) not null,
+	turuID int,
+    primary key (id),
+    foreign key (turuID) references mahkemeturu(id)
+);
+
+
+
+
+
+-- 6 DAVA TURU TABLOSU
+----------------------------------
+create table davaturu (
+	id int AUTO_INCREMENT not null,	
+	imhaSuresi int,
+	mahkemeID  int,
+	davaninTuru varchar(100),
+    primary key (id),
+    foreign key (mahkemeID) references mahkemeler(id)
+);
+
+
+
+
+
+
+-- 7 ARSIV TABLOSU
+----------------------------------
+create table arsiv (
+	id int AUTO_INCREMENT not null,	
+	yil varchar(50),
+    geldigiYerId int,
+	dosyaEsasNo varchar(50),
+	kararNo varchar(50),
+	karartarihi varchar(50),
+	kesinlesmeTarihi varchar(50),
+	davaTuruID int,
+    primary key (id),
+    foreign key (geldigiYerId) references mahkemeler(id),
+    foreign key (davaTuruID) references davaTuru(id)
+);
+
+
+
+
+-- 8 IMHA DA GOREVLI PERSONEL TABLOSU
+----------------------------------
+create table imha_personel (	
+	id int AUTO_INCREMENT not null,	
+    arsivId int ,
+	persId int,
+	imhaTarihi  varchar(50),
+	primary key (id),
+	foreign key (persId) references personel(id),
+	foreign key (arsivId) references arsiv(id)
+);
+
+
+
+
+
+-- GROUPS test
+INSERT INTO GROUPSS(GRUPNAME)VALUES('Admin');
+INSERT INTO GROUPSS(GRUPNAME)VALUES('Standart');
+
+
+#Personel Test
+INSERT INTO personel(tcno,adsoyad,dtarihi,calistigibirim)VALUES('10214523611','Ahmet MEHMET','05/04/2000','Proje Test Birimi');
+INSERT INTO personel(tcno,adsoyad,dtarihi,calistigibirim)VALUES('14336334495','Aziz SALÇASIZ','12/11/1996','Proje Test Birimi');
+INSERT INTO personel(tcno,adsoyad,dtarihi,calistigibirim)VALUES('12014514210','Ayşe ÇAR','28/05/2000','Proje Test Birimi');
+INSERT INTO personel(tcno,adsoyad,dtarihi,calistigibirim)VALUES('10012521441','Ahmet GECDOGDU','01/01/1998','Yazılım Test Birimi');
+INSERT INTO personel(tcno,adsoyad,dtarihi,calistigibirim)VALUES('25100139854','Mert ÇARŞAFCIOĞLU','21/08/1984','Yazılım Test Birimi');
+INSERT INTO personel(tcno,adsoyad,dtarihi,calistigibirim)VALUES('14254833525','Ahmet Mert','19/12/2003','Proje Test Birimi');
+
+update  personel set  adsoyad='ABC ABC', dtarihi='3/2/2001',  tcno='11111111111', calistigibirim='Proje Test Birimi' where id=6;
+
+-- User Test
+INSERT INTO USERS(userName,password,groupsID,aitOldKisiID)VALUES('admin','1',1,1);
+INSERT INTO USERS(userName,password,groupsID,aitOldKisiID)VALUES('kullanici','123456',2,2);
+
+
+
+INSERT INTO mahkemeturu(mahkemeTuru)VALUES('Sulh Hukuk Mahkemesi');
+INSERT INTO mahkemeturu(mahkemeTuru)VALUES('Asliye Hukuk Mahkemeleri');
+INSERT INTO mahkemeturu(mahkemeTuru)VALUES('Asliye Ceza Mahkemeleri');
+INSERT INTO mahkemeturu(mahkemeTuru)VALUES('Ağır Ceza Mahkemeleri');
+INSERT INTO mahkemeturu(mahkemeTuru)VALUES('İlk Derece Mahkemeleri');
+INSERT INTO mahkemeturu(mahkemeTuru)VALUES('Özel Kanunlarla Kurulan Diğer Ceza Mahkemeleri');
+INSERT INTO mahkemeturu(mahkemeTuru)VALUES('Özel Kanunlarla Kurulan Diğer Hukuk Mahkemeleri');
+
+insert into mahkemeler (adi,turuID)values("xxx ili sulh hukuk mahkemesi", 1);
+
+
+
+insert into davaturu(imhaSuresi,mahkemeID,davaninTuru) values (25, 1, 'BOŞANMA DAVASI VE TAZMİNAT');
+insert into davaturu(imhaSuresi,mahkemeID,davaninTuru) values (25, 1, 'KİRA DAVALARI');
+insert into davaturu(imhaSuresi,mahkemeID,davaninTuru) values (25, 1, 'TAPU VE TAŞINMAZ DAVALARI');
+insert into davaturu(imhaSuresi,mahkemeID,davaninTuru) values (25, 1, 'TÜKETİCİ DAVALARI');
+insert into davaturu(imhaSuresi,mahkemeID,davaninTuru) values (25, 1, 'Tespit Davalası');
+insert into davaturu(imhaSuresi,mahkemeID,davaninTuru) values (25, 1, 'Eda Davalası');
+insert into davaturu(imhaSuresi,mahkemeID,davaninTuru) values (25, 1, 'Belirsiz Alacak Davası');
+insert into davaturu(imhaSuresi,mahkemeID,davaninTuru) values (25, 1, 'Katen Adam öldürme');
+insert into davaturu(imhaSuresi,mahkemeID,davaninTuru) values (25, 1, 'Hırsızlık');
+insert into davaturu(imhaSuresi,mahkemeID,davaninTuru) values (25, 1, 'Cinayete Teşebbüs');
+
+
+
+

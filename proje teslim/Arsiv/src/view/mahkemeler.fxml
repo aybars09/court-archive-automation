@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="668.0" prefWidth="1261.0" styleClass="box-border" stylesheets="@../resources/first.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MahkemelerController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="77.0" prefWidth="795.0">
+         <children>
+            <Text fill="#c38c8c" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="baslik1" text="MAHKEME TANIMLARI" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox prefHeight="474.0" prefWidth="1047.0">
+         <children>
+            <VBox prefHeight="474.0" prefWidth="336.0" styleClass="box-border">
+               <children>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="beyaz-yazi" text="No">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="12.0" layoutY="12.0">
+                     <children>
+                        <TextField fx:id="txtID" disable="true" prefHeight="34.0" prefWidth="116.0" promptText="0" styleClass="text-field-siyah">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="125.0" prefHeight="45.0" prefWidth="322.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="beyaz-yazi" text="Mahkeme Adı" wrappingWidth="150.0">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="322.0">
+                     <children>
+                        <TextField fx:id="txtName" prefHeight="34.0" prefWidth="288.0" styleClass="text-field-siyah">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="198.0">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="22.0" layoutY="104.0" prefHeight="45.0" prefWidth="322.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="beyaz-yazi" text="Mahkeme Türü" wrappingWidth="150.0">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="22.0" layoutY="137.0" prefHeight="59.0" prefWidth="322.0" />
+                  <ComboBox fx:id="cmbMahkemeTuru" prefHeight="34.0" prefWidth="287.0">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </ComboBox>
+                  <HBox alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="127.0" prefHeight="327.0" prefWidth="292.0">
+                     <children>
+                        <ImageView fitHeight="166.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/3211649.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="474.0" prefWidth="893.0">
+               <children>
+                  <TableView fx:id="table" onMouseClicked="#toForm" prefHeight="474.0" prefWidth="780.0" styleClass="box-border" stylesheets="@../../resources/table-view.css" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="795.0">
+         <children>
+            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#save" prefHeight="34.0" prefWidth="120.0" text="Save">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnUpdate" disable="true" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#update" prefHeight="34.0" prefWidth="120.0" text="Update">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnCancel" disable="true" mnemonicParsing="false" onAction="#cancel" prefHeight="34.0" prefWidth="120.0" text="Cancel">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnDelete" disable="true" mnemonicParsing="false" onAction="#delete" prefHeight="34.0" prefWidth="120.0" text="Delete">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>
